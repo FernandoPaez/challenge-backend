@@ -5,7 +5,7 @@ import './models/Personaje.js';
 import './models/Genero.js';
 import './models/Usuario.js';
 import './models/Rol.js';
-import './models/per_pel.js';
+import './models/per_pel.js'
 import './models/Pel-gen.js';
 
 

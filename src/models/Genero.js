@@ -5,13 +5,13 @@ export const Genero= sequelize.define('genero',{
     id_genero:{
         type: DataTypes.INTEGER,
         primaryKey:true,
-        autoincrement: true,
+        autoIncrement: true,
     },
     nombre:{
         type: DataTypes.STRING,
     },
     imagen:{
-        type:DataTypes.STRING.BINARY,
+        type:DataTypes.STRING,
     }
 },
     {timestamps:false},

@@ -4,7 +4,7 @@ import { Usuario } from './Usuario.js';
 
 
 export const Rol= sequelize.define('rol',{
-    id:{
+    rol_id:{
         type: DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true,
@@ -16,6 +16,17 @@ descripcion:{
 }
 },
 {timestamps:false,},);
+
+//Usuario.hasOne(Rol,{});
+Rol.hasMany(Usuario, {
+    foreingKey: 'id_rol',
+    sourceId: 'rol_id', 
+
+});
+    Usuario.belongsTo(Rol, {
+      foreinKey: 'id_rol',
+    targetId: 'rol_id',   
+}) 
 
 
 

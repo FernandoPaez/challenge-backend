@@ -12,7 +12,7 @@ export const Pelicula = sequelize.define('peliculas', {
         autoIncrement: true,
     },
     imagen: {
-        type: DataTypes.STRING.BINARY,
+        type: DataTypes.STRING,
     },
     titulo: {
         type: DataTypes.STRING,

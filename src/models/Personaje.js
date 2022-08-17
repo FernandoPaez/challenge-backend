@@ -8,7 +8,7 @@ export const Personaje= sequelize.define('personaje',{
         primaryKey: true,
         autoIncrement: true,
     },imagen:{
-        type:DataTypes.STRING.BINARY,
+        type:DataTypes.STRING,
     },
     nombre:{
         type:DataTypes.STRING,
