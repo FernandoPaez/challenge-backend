@@ -1,8 +1,9 @@
 import express from 'express';
 
 const app = express();
+app.use(express.json());
 
-import personajesRoutes from './routes/personajes.router.js'
+import personajesRoutes from './routes/personajes.router.js';
 
 
 //routes

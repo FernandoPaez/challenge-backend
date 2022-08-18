@@ -1,16 +1,19 @@
-const multer = require('multer');
-const path= require('path');
+import multer from 'multer';
+//import path from 'path';
 //const{v4:uuidv4}= require('uuid');
 
 
 
-storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: (req, res, cb) => {
-        cb(null, './uploads');
+        cb(null, 'src/archivos');
     },
-    filename: (req, res, cb) => {
-        cb(null, Date.now()+'-'+file.originalname);
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
     }
 });
-upload=multer({storage});
-module.exports= upload;
+
+
+const upload = multer({ storage });
+
+export default upload;

@@ -13,7 +13,7 @@ import './models/Pel-gen.js';
 
 
 //middlewares
-app.use(express.json());
+//app.use(express.json());
 //app.use(cors());
 app.use(morgan('dev')); 
 
