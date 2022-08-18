@@ -8,9 +8,11 @@ const router=Router();
 router.get("/",getPersonajes);
 router.post("/", createPersonaje);
 
-router.post("/subir",upload.single('file'),(req, res) => {
+/* router.post("/subir",upload.single('file'),(req, res) => {
     console.log(req.file);
-    res.send('El archivo se envio correctamente')});
+    res.send('El archivo se envio correctamente')}); */
+
+router.post("/create",upload.single('file'),createPersonaje);
 
 
 export default router;

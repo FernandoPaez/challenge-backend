@@ -1,5 +1,5 @@
 import path from 'path';
-
+import {}from '../libs/multer.js';
 import {Personaje}from '../models/Personaje.js';
 
 
@@ -15,22 +15,21 @@ export async function getPersonajes(req,res){
 }
 
 export async function createPersonaje(req,res){
-    const {imagen,nombre,edad,peso,historia} = req.body;
-
-    
-    //const file=req.file.path;
+    const {nombre,edad,peso,historia} = req.body;
+       
+    //const file = req.file.path;
 
      try {
         const newPersonaje=Personaje.create({
-            imagen,
+            //imagen:file,
             nombre,
             edad,
             peso,
             historia,
         })
         
-        return res.json(newPersonaje);
-        //res.json({message:'personaje creado'});
+        return res.json({newPersonaje});
+        
     } catch (error) {
         res.status(500).json({message: error.message})
     }
