@@ -4,14 +4,13 @@ import './models/Pelicula.js';
 import './models/Personaje.js';
 import './models/Genero.js';
 import './models/Usuario.js';
-import './models/Rol.js';
 import './models/per_pel.js'
 import './models/Pel-gen.js';
 
 
 async function main() {
     try {
-        await sequelize.sync({force:true});
+        await sequelize.sync({force:false});
         app.listen(3000);
         console.log('server on port 3000');
     } catch (error) {

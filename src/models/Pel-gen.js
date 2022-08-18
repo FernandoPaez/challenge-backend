@@ -3,7 +3,7 @@ import {sequelize} from '../database/databease.js';
 
 export const Pel_gen = sequelize.define('pel_gen',{
 
-   /*  id_pelicula:{
+     id_pelicula:{
         type:DataTypes.INTEGER,
         primaryKey:true,
     },
@@ -11,7 +11,7 @@ export const Pel_gen = sequelize.define('pel_gen',{
         type:DataTypes.INTEGER,
         primaryKey:true,
 
-    } */
+    } 
 },
 {
     timestamps:false,

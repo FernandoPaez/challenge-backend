@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/databease.js';
 import { Genero } from './Genero.js';
 import { Personaje } from './Personaje.js';
-import { Pel_gen} from './Pel-gen.js';
+
 
 
 export const Pelicula = sequelize.define('peliculas', {
@@ -18,14 +18,12 @@ export const Pelicula = sequelize.define('peliculas', {
         type: DataTypes.STRING,
     },
     fecha: {
-        type: DataTypes.DATEONLY,
+        type:DataTypes.DATE,
     },
     calificacion: {
         type: DataTypes.SMALLINT,
     },
-    id_genero: {
-        type: DataTypes.INTEGER,
-    },
+   
 },
     {
         timestamps: false,
