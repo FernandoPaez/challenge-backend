@@ -17,11 +17,11 @@ export async function getPersonajes(req,res){
 export async function createPersonaje(req,res){
     const {nombre,edad,peso,historia} = req.body;
        
-    //const file = req.file.path;
+    const file = req.file.path;
 
      try {
-        const newPersonaje=Personaje.create({
-            //imagen:file,
+        const newPersonaje =Personaje.create({
+            imagen:file,
             nombre,
             edad,
             peso,
