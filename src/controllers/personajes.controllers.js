@@ -1,6 +1,7 @@
 import path from 'path';
 import { } from '../libs/multer.js';
 import { Personaje } from '../models/Personaje.js';
+import { Pelicula } from '../models/Pelicula.js';
 
 
 
@@ -8,13 +9,32 @@ export async function getPersonajes(req, res) {
     try {
         const personajes = await Personaje.findAll({
             attributes: ['imagen', 'nombre']
+
         });
+
         res.json(personajes);
 
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 }
+
+
+export async function listaPersonajes(req, res) {
+    try {
+        const personajes = await Personaje.findAll({
+            
+        });
+
+        res.json(personajes);
+
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+
+
 
 export async function createPersonaje(req, res) {
     const { nombre, edad, peso, historia } = req.body;
@@ -61,12 +81,12 @@ export async function updatePersonaje(req, res) {
     }
 }
 
-export async function deletePersonaje (req,res){
-    const {id_personaje}= req.params;
-    
+export async function deletePersonaje(req, res) {
+    const { id_personaje } = req.params;
+
     try {
-        const personaje= await Personaje.destroy({
-            where:{id_personaje}
+        const personaje = await Personaje.destroy({
+            where: { id_personaje }
         })
         res.status(200).json('Personaje eliminado');
     } catch (error) {
