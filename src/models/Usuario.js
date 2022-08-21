@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/databease.js';
-//mport { Rol } from './Rol.js';
+//import { Rol } from './Rol.js';
 
 export const Usuario = sequelize.define('usuario', {
     userId: {
