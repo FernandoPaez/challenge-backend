@@ -10,6 +10,31 @@ const secret = {
 }
 
 
+export const createUsuario=async(req,res)=>{
+    const{user_name,pass}=req.body;
+
+    const consulta= await Usuario.findOne({
+        where:{user_name:user_name}
+    })
+    try {
+        if(!consulta){
+            const newUsuario= Usuario.create({
+                user_name:user_name,
+                pass:pass
+            });
+         return res.json(newUsuario);
+        }else{
+            res.json('el usuario ya existe')
+        } 
+    
+    } catch (error) {
+        res.status(501).json(error);        
+    }
+  
+  
+}
+
+
 export const loginUsuario = async (req, res) => {
     const { user_name, pass } = req.body;
 
@@ -41,11 +66,5 @@ export const loginUsuario = async (req, res) => {
             res.status(501).json(error)
         }
     }
-
-
-
-    //const count = await Usuario.count();
-    //console.log(responce); // 6
-
 
 }
