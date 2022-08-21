@@ -5,12 +5,8 @@ import upload from'../libs/multer.js';
 const router=Router();
 
 
-router.get("/",getPersonajes);
-router.post("/", createPersonaje);
-
-/* router.post("/subir",upload.single('file'),(req, res) => {
-    console.log(req.file);
-    res.send('El archivo se envio correctamente')}); */
+router.get("/characters",getPersonajes);
+//router.post("/", createPersonaje);
 
 router.post("/create",upload.single('file'),createPersonaje);
 

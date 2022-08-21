@@ -14,7 +14,7 @@ import authRoutes from './routes/auth.routes.js'
 
 
 //routes
-app.use('/api/personaje',personajesRoutes);
+app.use('/api/personajes',personajesRoutes);
 app.use('/api/usuarios',usuariosRoutes);
 app.use('/api/auth',authRoutes);
 

@@ -6,9 +6,11 @@ import {Personaje}from '../models/Personaje.js';
 
 export async function getPersonajes(req,res){
     try {
-        const personaje= await Personaje.findAll();
-        res.json(personaje);
-        console.log('getting personaje');
+        const personajes= await Personaje.findAll({
+            attributes: ['imagen', 'nombre']
+        });
+        res.json(personajes);
+        
     } catch (error) {
         res.status(400).json({message: error.message});
     }
