@@ -29,7 +29,6 @@ export async function createPersonaje(req, res) {
             peso,
             historia,
         })
-
         return res.json({ newPersonaje });
 
     } catch (error) {
@@ -50,16 +49,27 @@ export async function updatePersonaje(req, res) {
                 peso: peso,
                 historia: historia,
             }, {
-                where: {
-                    id_personaje: id_personaje
-                }
+            where: {
+                id_personaje: id_personaje
+            }
         });
         //personaje.imagen=file;
         //await personaje.save();
         return res.json(personaje);
     } catch (error) {
         res.status(501).json(error)
-
     }
+}
 
+export async function deletePersonaje (req,res){
+    const {id_personaje}= req.params;
+    
+    try {
+        const personaje= await Personaje.destroy({
+            where:{id_personaje}
+        })
+        res.status(200).json('Personaje eliminado');
+    } catch (error) {
+        res.status(501).json('Error al eliminar personaje')
+    }
 }
