@@ -1,6 +1,6 @@
 import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/databease.js';
-import{actor_movie}from '../models/ActorMovie.js';
+
 import { Pelicula } from './Pelicula.js';
 
 

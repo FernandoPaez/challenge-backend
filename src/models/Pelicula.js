@@ -32,7 +32,9 @@ export const Pelicula = sequelize.define('pelicula', {
     });
 
     //Pelicula.belongsToMany(Personaje,{through: ActorMovies});
-    Pelicula.belongsToMany(Genero,{through: 'pelicula_genero', timestamps: false });
+    Pelicula.belongsToMany(Genero,{through: 'pelicula_genero', timestamps: false,foreignKey:'genero_id' });
+    Genero.belongsToMany(Pelicula,{through: 'pelicula_genero', timestamps: false,foreignKey:'pelicula_id' });
+
 
 
 
