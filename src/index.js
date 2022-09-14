@@ -8,9 +8,7 @@ import './models/Pelicula.js';
 import './models/Personaje.js';
 import './models/Genero.js';
 import './models/Usuario.js';
-import './models/per_pel.js'
-import './models/Pel-gen.js';
-
+import './models/ActorMovie.js';
 
 //middlewares
 //app.use(express.json());

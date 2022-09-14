@@ -1,5 +1,8 @@
 import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/databease.js';
+import{actor_movie}from '../models/ActorMovie.js';
+import { Pelicula } from './Pelicula.js';
+
 
 
 export const Personaje= sequelize.define('personaje',{
@@ -25,3 +28,6 @@ export const Personaje= sequelize.define('personaje',{
 },
     {timestamps:false},
 );
+
+Personaje.belongsToMany(Pelicula, { through: 'actor_movie',timestamps: false,foreignKey:'personaje_id'});
+Pelicula.belongsToMany(Personaje,{through:'actor_movie',timestamps: false,foreignKey:'pelicula_id'});

@@ -5,7 +5,9 @@ import { Personaje } from './Personaje.js';
 
 
 
-export const Pelicula = sequelize.define('peliculas', {
+
+
+export const Pelicula = sequelize.define('pelicula', {
     id_pelicula: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -29,9 +31,9 @@ export const Pelicula = sequelize.define('peliculas', {
         timestamps: false,
     });
 
+    //Pelicula.belongsToMany(Personaje,{through: ActorMovies});
+    Pelicula.belongsToMany(Genero,{through: 'pelicula_genero', timestamps: false });
 
 
-Pelicula.belongsToMany(Personaje, { through: 'per_pel' },
-);
 
-Pelicula.belongsToMany(Genero,{through:'pel_gen'},);
+//Pelicula.belongsToMany(Personaje,{through:Per_pel},);
