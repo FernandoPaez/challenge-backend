@@ -36,13 +36,13 @@ export async function listaPersonajes(req, res) {
 
 
 
-export async function createPersonaje(req, res) {
+export async function createPersonaje ( req, res) {
     const { nombre, edad, peso, historia } = req.body;
 
     const file = req.file.path;
 
     try {
-        const newPersonaje = Personaje.create({
+        const newPersonaje = await Personaje.create({
             imagen: file,
             nombre,
             edad,
@@ -56,7 +56,7 @@ export async function createPersonaje(req, res) {
     }
 }
 
-export async function updatePersonaje(req, res) {
+export async function  updatePersonaje(req, res) {
     const { id_personaje } = req.params;
     const { nombre, edad, peso, historia } = req.body;
     //const file = req.file.path;
@@ -70,7 +70,7 @@ export async function updatePersonaje(req, res) {
                 historia: historia,
             }, {
             where: {
-                id_personaje: id_personaje
+                id_personaje: id_personaje,
             }
         });
         //personaje.imagen=file;

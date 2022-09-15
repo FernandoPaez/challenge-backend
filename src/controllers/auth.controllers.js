@@ -22,7 +22,7 @@ export const createUsuario=async(req,res)=>{
                 user_name:user_name,
                 pass:pass
             });
-         return res.json(newUsuario);
+         return res.json('Usuario creado con exito.');
         }else{
             res.json('el usuario ya existe')
         } 

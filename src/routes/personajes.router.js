@@ -10,7 +10,7 @@ router.get("/characters",getPersonajes);
 router.get("/lista", listaPersonajes);
 
 router.post("/create",upload.single('file'),createPersonaje);
-router.put("/update/:id_personaje" ,updatePersonaje);
+router.put("/update/:id_personaje" ,updatePersonaje);//enviar datos en postman body raw json 
 router.delete("/delete/:id_personaje",deletePersonaje);
 
 
