@@ -82,13 +82,26 @@ export async function  updatePersonaje(req, res) {
 }
 
 export async function deletePersonaje(req, res) {
-    const { id_personaje } = req.params;
+   
 
     try {
-        const personaje = await Personaje.destroy({
-            where: { id_personaje }
-        })
-        res.status(200).json('Personaje eliminado');
+        const { id_personaje } = req.params;
+
+        const personaje=await Personaje.findByPk(id_personaje);
+
+        if(personaje != null){
+            const personaje = await Personaje.destroy({
+                where: { id_personaje }
+            })
+            res.status(200).json('Personaje eliminado');
+        }else{
+            res.status(501).json('Personaje no encontrado')
+        }
+
+
+
+
+        
     } catch (error) {
         res.status(501).json('Error al eliminar personaje')
     }
