@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import {
     getPersonajes, createPersonaje, updatePersonaje, deletePersonaje, listaPersonajes,
-    detallePersonaje, getPersonajeNombre
+    detallePersonaje, getPersonajeNombre,getPersonajeEdad,getPersonajePeso, getPersonajeMovie
 } from '../controllers/personajes.controllers.js'
 import upload from '../libs/multer.js';
 
@@ -19,6 +19,10 @@ router.delete("/delete/:id_personaje", deletePersonaje);
 
 router.get("/detalle", detallePersonaje);
 router.get("/characters/name/:nombre", getPersonajeNombre);
+router.get("/characters/age/:edad", getPersonajeEdad);
+router.get("/characters/peso/:peso", getPersonajePeso);
+
+router.get("/characters/movies/:id_pelicula", getPersonajeMovie);
 
 
 

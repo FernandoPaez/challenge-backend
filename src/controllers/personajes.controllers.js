@@ -120,10 +120,9 @@ export async function detallePersonaje(req, res) {
 /* 6- Buesqueda de Personajes */
 export async function getPersonajeNombre(req, res) {
     const { nombre } = req.params;
-
     try {
 
-        const consulta =await Personaje.findOne({ where: { nombre: nombre } });
+        const consulta = await Personaje.findOne({ where: { nombre: nombre } });
         res.status(200).json(consulta);
 
     } catch (error) {
@@ -131,6 +130,72 @@ export async function getPersonajeNombre(req, res) {
     }
 }
 
+export async function getPersonajeEdad(req, res) {
+    const { edad } = req.params;
+    try {
+
+        const consulta = await Personaje.findOne({ where: { edad: edad } });
+        res.status(200).json(consulta);
+
+    } catch (error) {
+        res.status(500).json('error al obtener la consulta')
+    }
+}
+
+export async function getPersonajePeso(req, res) {
+    const { peso } = req.params;
+    try {
+
+        const consulta = await Personaje.findOne({ where: { peso: peso } });
+        res.status(200).json(consulta);
+
+    } catch (error) {
+        res.status(500).json('error al obtener la consulta')
+    }
+}
+
+export async function getPersonajeMovie(req, res) {
+
+    try {
+        const {id_pelicula}=req.params;
+        const consulta= await Personaje.findAll({
+            
+            include:
+            {
+                model: Pelicula,
+                attributes: ['titulo'],
+                where:{id_pelicula:id_pelicula}
+            },
+            
+            })
+       
+        res.status(200).json(consulta);
+    } catch (error) {
+        res.status(501).json('Error');
+    }
+  
+}
+
+
+
+
+/*  const { titulo } = req.params;
+    try {
+        const result = await Personaje.findOne(
+            {
+                where: { titulo: titulo },
+                include:
+                {
+                    model: Pelicula,
+                    attributes: ['titulo'],
+                },
+            }
+        )
+        res.status(200).json(result);
+
+    } catch (error) {
+        res.status(500).json('error');
+    } */
 
 
 
