@@ -4,7 +4,7 @@ import { } from '../libs/multer.js';
 import { Personaje } from '../models/Personaje.js';
 import { Pelicula } from '../models/Pelicula.js';
 import { response } from 'express';
-import sequelize from 'sequelize';
+import sequelize, { json, where } from 'sequelize';
 
 
 
@@ -12,11 +12,8 @@ export async function getPersonajes(req, res) {
     try {
         const personajes = await Personaje.findAll({
             attributes: ['imagen', 'nombre']
-
         });
-
         res.json(personajes);
-
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -26,9 +23,7 @@ export async function getPersonajes(req, res) {
 export async function listaPersonajes(req, res) {
     try {
         const personajes = await Personaje.findAll({
-
         });
-
         res.json(personajes);
 
     } catch (error) {
@@ -41,9 +36,7 @@ export async function listaPersonajes(req, res) {
 
 export async function createPersonaje(req, res) {
     const { nombre, edad, peso, historia } = req.body;
-
     const file = req.file.path;
-
     try {
         const newPersonaje = await Personaje.create({
             imagen: file,
@@ -84,9 +77,9 @@ export async function updatePersonaje(req, res) {
     }
 }
 
+
+
 export async function deletePersonaje(req, res) {
-
-
     try {
         const { id_personaje } = req.params;
 
@@ -106,30 +99,35 @@ export async function deletePersonaje(req, res) {
     }
 }
 
-
-
-
+/* 5- Detalle Personaje */
 export async function detallePersonaje(req, res) {
-
     try {
-       
-
-        console.log('hasta aca si');
-
         const result = await Personaje.findAll(
             {
-                
-                include: 
-                    {
-                        model: Pelicula,
-                        attributes: ['titulo'],
-                    },            }
+                include:
+                {
+                    model: Pelicula,
+                    attributes: ['titulo'],
+                },
+            }
         )
-
         res.status(200).json(result);
-
     } catch (error) {
         res.status(500).json('error');
+    }
+}
+
+/* 6- Buesqueda de Personajes */
+export async function getPersonajeNombre(req, res) {
+    const { nombre } = req.params;
+
+    try {
+
+        const consulta =await Personaje.findOne({ where: { nombre: nombre } });
+        res.status(200).json(consulta);
+
+    } catch (error) {
+        res.status(500).json('error al obtener la consulta')
     }
 }
 
@@ -138,35 +136,3 @@ export async function detallePersonaje(req, res) {
 
 
 
-
-    /*     const result =await Personaje.findAll({
-            include:[{
-                model:Pelicula,
-                as:'pelicula_id',
-                
-                through:{
-                    attributes:['pelicula_id'],
-                }
-            },],
-        }); */
-
-
-
-
-/* 
- try {
-        const personaje= await Personaje.findAll({
-
-            
-            include: Pelicula
-        })
-        return res.status(200).json(personaje);
-    } catch (error) {
-        res.status(501).json('Error')
-    }
-
-const result = await User.findOne({
-  where: { username: 'p4dm3' },
-  include: Profile
-});
-console.log(result); */
