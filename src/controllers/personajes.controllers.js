@@ -1,7 +1,10 @@
+
 import path from 'path';
 import { } from '../libs/multer.js';
 import { Personaje } from '../models/Personaje.js';
 import { Pelicula } from '../models/Pelicula.js';
+import { response } from 'express';
+import sequelize from 'sequelize';
 
 
 
@@ -23,7 +26,7 @@ export async function getPersonajes(req, res) {
 export async function listaPersonajes(req, res) {
     try {
         const personajes = await Personaje.findAll({
-            
+
         });
 
         res.json(personajes);
@@ -36,7 +39,7 @@ export async function listaPersonajes(req, res) {
 
 
 
-export async function createPersonaje ( req, res) {
+export async function createPersonaje(req, res) {
     const { nombre, edad, peso, historia } = req.body;
 
     const file = req.file.path;
@@ -56,7 +59,7 @@ export async function createPersonaje ( req, res) {
     }
 }
 
-export async function  updatePersonaje(req, res) {
+export async function updatePersonaje(req, res) {
     const { id_personaje } = req.params;
     const { nombre, edad, peso, historia } = req.body;
     //const file = req.file.path;
@@ -82,27 +85,88 @@ export async function  updatePersonaje(req, res) {
 }
 
 export async function deletePersonaje(req, res) {
-   
+
 
     try {
         const { id_personaje } = req.params;
 
-        const personaje=await Personaje.findByPk(id_personaje);
+        const personaje = await Personaje.findByPk(id_personaje);
 
-        if(personaje != null){
+        if (personaje != null) {
             const personaje = await Personaje.destroy({
                 where: { id_personaje }
             })
             res.status(200).json('Personaje eliminado');
-        }else{
+        } else {
             res.status(501).json('Personaje no encontrado')
         }
 
-
-
-
-        
     } catch (error) {
         res.status(501).json('Error al eliminar personaje')
     }
 }
+
+
+
+
+export async function detallePersonaje(req, res) {
+
+    try {
+       
+
+        console.log('hasta aca si');
+
+        const result = await Personaje.findAll(
+            {
+                
+                include: 
+                    {
+                        model: Pelicula,
+                        attributes: ['titulo'],
+                    },            }
+        )
+
+        res.status(200).json(result);
+
+    } catch (error) {
+        res.status(500).json('error');
+    }
+}
+
+
+
+
+
+
+
+    /*     const result =await Personaje.findAll({
+            include:[{
+                model:Pelicula,
+                as:'pelicula_id',
+                
+                through:{
+                    attributes:['pelicula_id'],
+                }
+            },],
+        }); */
+
+
+
+
+/* 
+ try {
+        const personaje= await Personaje.findAll({
+
+            
+            include: Pelicula
+        })
+        return res.status(200).json(personaje);
+    } catch (error) {
+        res.status(501).json('Error')
+    }
+
+const result = await User.findOne({
+  where: { username: 'p4dm3' },
+  include: Profile
+});
+console.log(result); */

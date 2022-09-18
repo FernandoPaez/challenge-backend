@@ -3,7 +3,6 @@ import { getPeliculas, getPeliculasper} from '../controllers/peliculas.comtrolle
 
 
 
-
 const router= Router();
 
 
